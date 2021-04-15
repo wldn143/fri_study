@@ -1,66 +1,20 @@
 #include <iostream>
 using namespace std;
-int N;
-long long multipleOfThree(int num, int sum, int length)
-
-{
-
-        //조건 충족
-
-        if (length == 1 && sum % 3 == 0)
-
-                 return 1;
-
-        //조건 불충족
-
-        else if (length == 1)
-
-                 return 0;
-
  
-
-        long long result = 0;
-
-        for (int i = 0; i <= 2; i++)
-
-                 result += multipleOfThree(i, sum + i, length - 1);
-
-        return result;
-
-}
-
  
-
-int main(void)
-
-{
-
-        ios_base::sync_with_stdio(0);cin.tie(0);
-
-        cin >> N;
-
+int main(void) {
+    int n;
+    int dp[1005][3];
+    cin >> n;
  
-
-        if (N == 1)
-
-                 cout << 0 << "\n";
-
-        else
-
-        {
-
-                 long long result = 0;
-
-                 //0으로 시작할 수 없다
-
-                 for (int i = 1; i <= 2; i++)
-
-                         result += multipleOfThree(i, i, N);
-
-                 cout << result << "\n";
-
+    dp[1][0] = 0;
+    dp[1][1] = 1;
+    dp[1][2] = 1;
+    for (int i = 2; i <= n; i++) {
+        for (int j = 0; j < 3; j++) {
+            dp[i][j] = dp[i - 1][0] + dp[i - 1][1] + dp[i - 1][2];
         }
-
-        return 0;
-
+    }
+ 
+    cout << dp[n][0] << endl;
 }
