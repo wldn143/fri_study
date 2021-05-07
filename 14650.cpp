@@ -18,3 +18,26 @@ int main(void) {
  
     cout << dp[n][0] << endl;
 }
+
+//그냥 점화식 이용하면
+#include<iostream>
+#include<cstring>
+using namespace std;
+
+const int MAX = 33333 + 1;
+const int MOD = 1000000009;
+int N;
+long long cache[MAX];
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	cin >> N;
+	cache[2] = 2;
+
+	for (int i = 3; i <= N; i++)
+		cache[i] = (cache[i - 1] * 3) % MOD;
+	cout << cache[N] << "\n";
+	return 0;
+
+}
