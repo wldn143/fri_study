@@ -3,7 +3,7 @@
 using namespace std;
 
 int q, r, question;
-string rules[60];
+string rules[60]; 
 
 int main()
 {
